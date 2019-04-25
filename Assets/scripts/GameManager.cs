@@ -74,21 +74,7 @@ public class GameManager : MonoBehaviour
 
                         //game_Status.Status = GameStatus.GameStat.play;
                     }
-                    {
-                        Spawnpuzzle(14);
-                        Setstarposition();
-                        ApllyMatriel();
-                        MixPuzzles();
-                    }
 
-                    if (GiveUpButton.clicked)
-                    {
-                        Debug.Log("GTA");
-                        for (int i = 0; i < puzzlelist.Count; i++)
-                        {
-                            puzzlelist[i].transform.position = puzzlePositions[i];
-                        }
-                    }
                 }
                 break;
             case GameStatus.GameStat.InGameMenu:
@@ -127,6 +113,18 @@ public class GameManager : MonoBehaviour
                 break;
 
         }
+
+
+        if (GiveUpButton.clicked)
+        {
+            Debug.Log("GTA");
+            GiveUpButton.clicked = false;
+            for (int i = 0; i < puzzlelist.Count; i++)
+            {
+                puzzlelist[i].transform.position = puzzlePositions[i];
+            }
+        }
+
     }
         IEnumerator SwapPuzzle(float delay)
         {
@@ -170,7 +168,10 @@ public class GameManager : MonoBehaviour
     private void Spawnpuzzle(int number)
         {
             for (int i = 0; i <= number; i++)
-            { puzzlelist.Add(Instantiate(puzzleprefab, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity, puzzlePos) as puzzle); }
+            { puzzlelist.Add(Instantiate(puzzleprefab, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity, puzzlePos) as puzzle);
+            
+            
+            } 
         }
         
         void Setstarposition()
@@ -229,6 +230,7 @@ public class GameManager : MonoBehaviour
                 p.transform.position = puzzlePositions[number];
             }
         }
+
         bool HasWeWon()
         {
             foreach (puzzle p in puzzlelist)

@@ -51,6 +51,12 @@ public class Buttons : MonoBehaviour
             clicked = true;
 
         }
+
+        if (type == ButtonType.SwapPuzzle)
+        {
+            GameManager.game_Status.Status = GameStatus.GameStat.replace_puzzle;
+
+        }
     }
     IEnumerator MoveToPosition(Vector3 tragetPosition)
     {
@@ -86,6 +92,7 @@ public class Buttons : MonoBehaviour
             transform.position = StartPosition;
             GameManager.game_Status.Status = GameStatus.GameStat.choosepicture;
         }
+        
     }
 }
 

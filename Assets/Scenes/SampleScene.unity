@@ -536,7 +536,7 @@ MonoBehaviour:
   InGameMenu: {fileID: 601460312}
   StartButton: {fileID: 512722605}
   WinGameMenu: {fileID: 1733354709}
-  SwapButton: {fileID: 0}
+  SwapButton: {fileID: 2022744987}
   GiveUpButton: {fileID: 1619407777}
   DeveloperMode: 1
   puzzlePos: {fileID: 964637454}
@@ -1886,7 +1886,7 @@ GameObject:
   - component: {fileID: 1857621117}
   - component: {fileID: 1857621116}
   m_Layer: 0
-  m_Name: StartBu
+  m_Name: Start
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2187,7 +2187,7 @@ GameObject:
   - component: {fileID: 2022744991}
   - component: {fileID: 2022744990}
   m_Layer: 0
-  m_Name: nextt
+  m_Name: SwapButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2269,7 +2269,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneName: 
   finalXPosition: 0
-  type: 1
+  type: 4
   clicked: 0
   EnableSlidingEffect: 0
 --- !u!65 &2022744991

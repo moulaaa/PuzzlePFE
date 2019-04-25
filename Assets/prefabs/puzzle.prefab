@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 7156561017093992272}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.55, y: 1.77, z: 0}
-  m_LocalScale: {x: 2, y: 1.5, z: 1}
+  m_LocalScale: {x: -2.12, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -92,10 +92,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clicked: 0
+  replace: 0
   go_left: 0
   go_right: 0
   go_Down: 0
   go_up: 0
+  winPosition: {x: 0, y: 0, z: 0}
+  scale_x: 0.09
+  scale_y: 0.09
+  Scale_backup: {x: 0, y: 0, z: 0}
   move_amount: {x: 0, y: 0}
   startPos: {x: 0, y: 0}
   moved: 0
