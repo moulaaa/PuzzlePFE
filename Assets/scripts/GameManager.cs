@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     private Vector2 offset = new Vector2(2.03f, 1.52f);
 
     public static string foldername;
+    public static int level;
     public GameObject fullpicture;
 
     [HideInInspector]
@@ -36,6 +37,7 @@ public class GameManager : MonoBehaviour
     public static string element1_name, element2_name;
     public static RemplaceElement replace_element;
     bool isGenerated = false;
+    bool isWin = false;
     void Start()
     {
         SwapButton.SetActive(true);
@@ -125,7 +127,32 @@ public class GameManager : MonoBehaviour
             }
         }
 
+       if (!isWin) CheckIfIWin();
+
     }
+
+    void CheckIfIWin()
+    {
+        bool isAlRight = true;
+        for (int i = 0; i < puzzlelist.Count; i++)
+        {
+            isAlRight &= ( puzzlelist[i].transform.position == puzzlePositions[i]);
+        }
+
+
+        if (isAlRight)
+        {
+            //WINNING STATE
+            isWin = true;
+            if (level == PlayerPrefs.GetInt("saveData")) PlayerPrefs.SetInt("saveData", PlayerPrefs.GetInt("saveData") + 1);
+            Debug.Log("YOU WIN!");
+
+        }
+
+    }
+
+
+
         IEnumerator SwapPuzzle(float delay)
         {
             yield return StartCoroutine(Wait(delay));
@@ -167,10 +194,12 @@ public class GameManager : MonoBehaviour
     }
     private void Spawnpuzzle(int number)
         {
+        puzzle tempPuzzle;
             for (int i = 0; i <= number; i++)
-            { puzzlelist.Add(Instantiate(puzzleprefab, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity, puzzlePos) as puzzle);
-            
-            
+            {
+            tempPuzzle= Instantiate(puzzleprefab, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity, puzzlePos) as puzzle;
+            tempPuzzle.name = tempPuzzle.name + i;
+            puzzlelist.Add(tempPuzzle);
             } 
         }
         

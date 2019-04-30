@@ -2,24 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class picture : MonoBehaviour
 {
 
+    public Image LockBtn;
+    public int levelToUnlock;
+
     // Start is called before the first frame update
     void Start()
     {
-        //Debug.Log("Test");
+        //PlayerPrefs.DeleteAll();
+        if (levelToUnlock <= PlayerPrefs.GetInt("saveData", 0))
+        {
+            LockBtn.gameObject.SetActive(false);
+        }
+        else
+            GetComponent<Button>().enabled = false;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-    private void OnMouseDown()
+    public void LoadScene()
     {
         GameManager.foldername = gameObject.name;
+        GameManager.level = levelToUnlock;
         SceneManager.LoadScene("SampleScene");
     }
 

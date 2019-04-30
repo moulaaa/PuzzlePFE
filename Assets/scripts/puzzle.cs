@@ -53,20 +53,21 @@ public class puzzle : MonoBehaviour
     }
     private void OnMouseUp()
     {
-        
-            if (GameManager.game_Status.Status == GameStatus.GameStat.play)
-            { clicked = false; }
-        
-        
-            if (GameManager.game_Status.Status == GameStatus.GameStat.replace_puzzle)
-            { replace = false;
-            if (GameManager.replace_element== GameManager.RemplaceElement.first)
-            {
-                gameObject.GetComponent<Renderer>().material.color = Color.red;
-                GameManager.pos2 = transform.position;
-                GameManager.element2_name = gameObject.name;
-                GameManager.replace_element = GameManager.RemplaceElement.second;
-            }
+
+        clicked = true;
+        moved = false;
+        CheckMoveAbility();
+
+    }
+    private void OnMouseDown()
+    {
+        if (GameManager.game_Status.Status == GameStatus.GameStat.play)
+        { clicked = false; }
+
+
+        if (GameManager.game_Status.Status == GameStatus.GameStat.replace_puzzle)
+        {
+            replace = false;
             if (GameManager.replace_element == GameManager.RemplaceElement.second)
             {
                 gameObject.GetComponent<Renderer>().material.color = Color.red;
@@ -74,15 +75,17 @@ public class puzzle : MonoBehaviour
                 GameManager.element1_name = gameObject.name;
                 GameManager.replace_element = GameManager.RemplaceElement.finished;
             }
-        }
-        
-    }
-    private void OnMouseDown()
-    {
+            if (GameManager.replace_element == GameManager.RemplaceElement.first)
+            {
+                gameObject.GetComponent<Renderer>().material.color = Color.red;
+                GameManager.pos2 = transform.position;
+                GameManager.element2_name = gameObject.name;
+                GameManager.replace_element = GameManager.RemplaceElement.second;
+            }
 
-        clicked = true;
-        moved = false;
-        CheckMoveAbility();
+        }
+
+       
     }
 
     void CheckMoveAbility()

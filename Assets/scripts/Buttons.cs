@@ -36,7 +36,8 @@ public class Buttons : MonoBehaviour
 
     }
     private void OnMouseDown()
-    {
+    {   if (GameManager.game_Status.Status == GameStatus.GameStat.play && gameObject.tag == "GamePlayTag")
+            return;
         if (EnableSlidingEffect)
         {
             finalPosition = new Vector3(finalXPosition, transform.position.y, transform.position.z);
@@ -53,10 +54,13 @@ public class Buttons : MonoBehaviour
         }
 
         if (type == ButtonType.SwapPuzzle)
-        {
-            GameManager.game_Status.Status = GameStatus.GameStat.replace_puzzle;
-
+        {if (GameManager.game_Status.Status == GameStatus.GameStat.play)
+            {
+                GameManager.game_Status.Status = GameStatus.GameStat.replace_puzzle;
+            }
         }
+
+
     }
     IEnumerator MoveToPosition(Vector3 tragetPosition)
     {
