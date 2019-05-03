@@ -72,14 +72,14 @@ public class puzzle : MonoBehaviour
             {
                 gameObject.GetComponent<Renderer>().material.color = Color.red;
                 GameManager.pos1 = transform.position;
-                GameManager.element1_name = gameObject.name;
+                GameManager.element1 = gameObject;
                 GameManager.replace_element = GameManager.RemplaceElement.finished;
             }
             if (GameManager.replace_element == GameManager.RemplaceElement.first)
             {
                 gameObject.GetComponent<Renderer>().material.color = Color.red;
                 GameManager.pos2 = transform.position;
-                GameManager.element2_name = gameObject.name;
+                GameManager.element2 = gameObject;
                 GameManager.replace_element = GameManager.RemplaceElement.second;
             }
 

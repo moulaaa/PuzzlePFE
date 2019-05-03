@@ -53,11 +53,10 @@ public class Buttons : MonoBehaviour
 
         }
 
-        if (type == ButtonType.SwapPuzzle)
-        {if (GameManager.game_Status.Status == GameStatus.GameStat.play)
-            {
+        if (type == ButtonType.SwapPuzzle){
+            Debug.Log("GTA SANANDREAS");
+
                 GameManager.game_Status.Status = GameStatus.GameStat.replace_puzzle;
-            }
         }
 
 

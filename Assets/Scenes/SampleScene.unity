@@ -2640,7 +2640,7 @@ MonoBehaviour:
   finalXPosition: 0
   type: 4
   clicked: 1
-  EnableSlidingEffect: 1
+  EnableSlidingEffect: 0
 --- !u!65 &2022744991
 BoxCollider:
   m_ObjectHideFlags: 0

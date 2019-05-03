@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
         finished
     }
     public static Vector3 pos1, pos2;
-    public static string element1_name, element2_name;
+    public static GameObject element1, element2;
     public static RemplaceElement replace_element;
     bool isGenerated = false;
     bool isWin = false;
@@ -42,8 +42,8 @@ public class GameManager : MonoBehaviour
     {
         SwapButton.SetActive(true);
         replace_element = RemplaceElement.first;
-        element1_name = null;
-        element2_name = null;
+        element1 = null;
+        element2 = null;
         Setstarposition();
         ApllyMatriel();
 
@@ -102,13 +102,14 @@ public class GameManager : MonoBehaviour
                 break;
             case GameStatus.GameStat.replace_puzzle:
                 {
-                    Debug.Log("Element1" + element1_name);
-                    Debug.Log("Element1" + element2_name);
-                    Debug.Log("Element1 pos" + element1_name);
-                    Debug.Log("Element2 pos" + element2_name);
-                    if (element1_name != null && element2_name != null)
+                    Debug.Log("Element1" + element1);
+                    Debug.Log("Element1" + element2);
+                    Debug.Log("Element1 pos" + element1);
+                    Debug.Log("Element2 pos" + element2);
+                    if (element1 != null && element2 != null)
                     {
-                        StartCoroutine(SwapPuzzle(1.0f));
+                       // StartCoroutine(SwapPuzzle(1.0f));
+                        SwapPuzzle();
                         SwapButton.SetActive(false);
                     }
                 }
@@ -119,7 +120,6 @@ public class GameManager : MonoBehaviour
 
         if (GiveUpButton.clicked)
         {
-            Debug.Log("GTA");
             GiveUpButton.clicked = false;
             for (int i = 0; i < puzzlelist.Count; i++)
             {
@@ -152,8 +152,18 @@ public class GameManager : MonoBehaviour
     }
 
 
+    void SwapPuzzle()
+    {
+        Vector2 auxPos = element1.transform.position;
+        element1.transform.position = element2.transform.position;
+        element2.transform.position = auxPos;
+        element1.GetComponent<Renderer>().material.color = Color.white;
+        element2.GetComponent<Renderer>().material.color = Color.white;
+        game_Status.Status = GameStatus.GameStat.play;
 
-        IEnumerator SwapPuzzle(float delay)
+    }
+
+     /*   IEnumerator SwapPuzzle(float delay)
         {
             yield return StartCoroutine(Wait(delay));
             foreach (puzzle p in puzzlelist)
@@ -182,7 +192,7 @@ public class GameManager : MonoBehaviour
         {
             yield return 0;
         }
-    }
+    }*/
     IEnumerator MoveSwapPuzzle(Vector3 traget, puzzle p)
     {
         float accuracy = 0.00001f;
