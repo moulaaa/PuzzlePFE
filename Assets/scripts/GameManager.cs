@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,12 +11,20 @@ public class GameManager : MonoBehaviour
     public GameObject StartButton;
     public GameObject WinGameMenu;
     public GameObject SwapButton;
+    public GameObject losePanel;
     public Buttons GiveUpButton;
     public bool DeveloperMode;
     private List<puzzle> puzzlelist = new List<puzzle>();
     private List<int> randomNumbers = new List<int>();
     private List<Vector3> puzzlePositions = new List<Vector3>();
     public Transform puzzlePos;
+
+    public Animator winAnim;
+
+    public Image progressBar;
+    public Text finalScoreTxt;
+
+    public float timerValue = 60; //60 means 60 seconds
 
     private Vector2 startPosition = new Vector2(-3.55f, 1.77f);
     //Vector2 myVect = transform.localScale;
@@ -37,22 +47,33 @@ public class GameManager : MonoBehaviour
     public static GameObject element1, element2;
     public static RemplaceElement replace_element;
     bool isGenerated = false;
-    bool isWin = false;
+    bool isWin = false,canCheckWinningState = false;
+    bool canStartTimer = false;
+
+    float realTimeValue ;
+    int totalScoreValue = 0;
+
+    const int minScoreToEnableSwapBtn = 0;
+    const int minScoreToEnableGiveUpBtn = 0;
+
     void Start()
     {
+        realTimeValue = timerValue;
+        totalScoreValue = PlayerPrefs.GetInt("score",0);
+        if (totalScoreValue <= minScoreToEnableSwapBtn) SwapButton.SetActive(false);
+        if (totalScoreValue <= minScoreToEnableGiveUpBtn) GiveUpButton.gameObject.SetActive(false);
         SwapButton.SetActive(true);
         replace_element = RemplaceElement.first;
         element1 = null;
         element2 = null;
         Setstarposition();
         ApllyMatriel();
-
-
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (canStartTimer && realTimeValue > 0) DecreaseTimerValue();
         switch (game_Status.Status)
         {
             case GameStatus.GameStat.Start_pressed:
@@ -68,6 +89,8 @@ public class GameManager : MonoBehaviour
                 break;
             case GameStatus.GameStat.play:
                 {
+                    canStartTimer = true;
+                    canCheckWinningState = true;
                     Debug.Log("play case");
                     if (HasWeWon() == true)
                     {
@@ -110,6 +133,7 @@ public class GameManager : MonoBehaviour
                     {
                        // StartCoroutine(SwapPuzzle(1.0f));
                         SwapPuzzle();
+                        totalScoreValue -= minScoreToEnableSwapBtn;
                         SwapButton.SetActive(false);
                     }
                 }
@@ -120,37 +144,72 @@ public class GameManager : MonoBehaviour
 
         if (GiveUpButton.clicked)
         {
+            Debug.Log("hey");
             GiveUpButton.clicked = false;
+            totalScoreValue -= minScoreToEnableGiveUpBtn;
             for (int i = 0; i < puzzlelist.Count; i++)
             {
                 puzzlelist[i].transform.position = puzzlePositions[i];
             }
         }
 
-       if (!isWin) CheckIfIWin();
+        if (!isWin && canCheckWinningState) CheckIfIWin();
 
     }
 
     void CheckIfIWin()
     {
+        
         bool isAlRight = true;
         for (int i = 0; i < puzzlelist.Count; i++)
         {
             isAlRight &= ( puzzlelist[i].transform.position == puzzlePositions[i]);
         }
 
-
+        
         if (isAlRight)
         {
             //WINNING STATE
             isWin = true;
-            if (level == PlayerPrefs.GetInt("saveData")) PlayerPrefs.SetInt("saveData", PlayerPrefs.GetInt("saveData") + 1);
-            Debug.Log("YOU WIN!");
-
+            canStartTimer = false;
+            Win();
         }
 
     }
 
+
+    void Win()
+    {
+        totalScoreValue += (int)realTimeValue * 10 + 100;
+        PlayerPrefs.SetInt("score", totalScoreValue);
+
+        winAnim.Play("YouWinAnimation");
+        StartCoroutine(scoreIncreasingAnimation());
+    }
+
+
+    IEnumerator scoreIncreasingAnimation()
+    {
+        float s = 0;
+
+        while (s < totalScoreValue)
+        {
+            s += Time.deltaTime * realTimeValue;
+            finalScoreTxt.text = ((int)s).ToString();
+            yield return new WaitForEndOfFrame();
+        }
+
+    }
+
+    void DecreaseTimerValue()
+    {
+        realTimeValue -= Time.deltaTime;
+        progressBar.fillAmount = realTimeValue / timerValue;
+        if (realTimeValue <= 0)
+        {
+            losePanel.SetActive(true);
+        }
+    }
 
     void SwapPuzzle()
     {
@@ -161,6 +220,11 @@ public class GameManager : MonoBehaviour
         element2.GetComponent<Renderer>().material.color = Color.white;
         game_Status.Status = GameStatus.GameStat.play;
 
+    }
+
+    public void BackToMainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 
      /*   IEnumerator SwapPuzzle(float delay)
