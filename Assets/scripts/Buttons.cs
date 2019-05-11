@@ -49,6 +49,7 @@ public class Buttons : MonoBehaviour
         }*/
         if (type == ButtonType.GiveUp)
         {
+            Debug.Log("gaha");
             clicked = true;
 
         }

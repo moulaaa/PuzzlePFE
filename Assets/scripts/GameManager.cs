@@ -73,6 +73,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(game_Status.Status);
         if (canStartTimer && realTimeValue > 0) DecreaseTimerValue();
         switch (game_Status.Status)
         {
@@ -218,7 +219,7 @@ public class GameManager : MonoBehaviour
         element2.transform.position = auxPos;
         element1.GetComponent<Renderer>().material.color = Color.white;
         element2.GetComponent<Renderer>().material.color = Color.white;
-        game_Status.Status = GameStatus.GameStat.play;
+        game_Status.Status = GameStatus.GameStat.Start;
 
     }
 
