@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     private List<Vector3> puzzlePositions = new List<Vector3>();
     public Transform puzzlePos;
 
+    public WordGuessingGameManager wordGuessingScript;
+
     public Animator winAnim;
 
     public Image progressBar;
@@ -48,7 +50,7 @@ public class GameManager : MonoBehaviour
     public static RemplaceElement replace_element;
     bool isGenerated = false;
     bool isWin = false,canCheckWinningState = false;
-    bool canStartTimer = false;
+    public static bool canStartTimer = false;
 
     float realTimeValue ;
     int totalScoreValue = 0;
@@ -106,13 +108,13 @@ public class GameManager : MonoBehaviour
             case GameStatus.GameStat.InGameMenu:
                 {
                     InGameMenu.SetActive(true);
+                    canStartTimer = false;
                     // StartButton.SetActive(false);
                 }
                 break;
             case GameStatus.GameStat.resume:
                 {
-                    InGameMenu.SetActive
-                        (false);
+                    InGameMenu.SetActive (false);
                     game_Status.Status = GameStatus.GameStat.play;
                 }
                 break;
@@ -173,13 +175,13 @@ public class GameManager : MonoBehaviour
             //WINNING STATE
             isWin = true;
             canStartTimer = false;
-            Win();
+            ShowWordGuessingGame();
         }
 
     }
 
 
-    void Win()
+    public void Win()
     {
         totalScoreValue += (int)realTimeValue * 10 + 100;
         PlayerPrefs.SetInt("score", totalScoreValue);
@@ -367,6 +369,26 @@ public class GameManager : MonoBehaviour
 
             }
         }
+
+        void ShowWordGuessingGame()
+        {
+            wordGuessingScript.selectedWord = returnCountryNamePedningOnFolderName();
+            wordGuessingScript.gameObject.SetActive(true);
+
+        }
+
+        string returnCountryNamePedningOnFolderName()
+        {
+            switch (foldername)
+            {
+                case "tunisia": return "تونس";
+                case "turkia": return "تركيا";
+                case "austalie": return "أستراليا";
+                case "angleterre": return "انقلترا";
+                default: return null;
+            }
+        }
+
     
 }
 

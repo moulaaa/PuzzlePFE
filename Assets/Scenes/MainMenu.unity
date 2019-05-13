@@ -1022,7 +1022,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneName: MenuSelect
   finalXPosition: 2.33
-  type: 0
+  type: 2
   clicked: 0
   EnableSlidingEffect: 1
 --- !u!65 &1279157153

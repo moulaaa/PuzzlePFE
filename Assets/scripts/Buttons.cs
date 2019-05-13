@@ -28,10 +28,12 @@ public class Buttons : MonoBehaviour
     {
         if (transform.position == finalPosition)
         {
-            if ((type == ButtonType.MainMenuButton)||(type == ButtonType.InGameButtonLoadScene))
-                //Debug.Log(this.gameObject.name);
-            SceneManager.LoadScene(sceneName);
-            { }
+            if ((type == ButtonType.MainMenuButton) || (type == ButtonType.InGameButtonLoadScene))
+            {
+                GameManager.game_Status.Status = GameStatus.GameStat.Start;
+                SceneManager.LoadScene(sceneName);
+                
+            }
         }
 
     }
@@ -89,6 +91,7 @@ public class Buttons : MonoBehaviour
         {
             transform.position = StartPosition;
             GameManager.game_Status.Status = GameStatus.GameStat.resume;
+            GameManager.canStartTimer = true;
         }
         if (gameObject.name == "Choosepicture")
 
