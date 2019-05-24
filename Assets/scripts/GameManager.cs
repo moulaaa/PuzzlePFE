@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     private List<Vector3> puzzlePositions = new List<Vector3>();
     public Transform puzzlePos;
 
+    public List<string> countryDependancy = new List<string>();
+
     public WordGuessingGameManager wordGuessingScript;
 
     public Animator winAnim;
@@ -166,9 +168,16 @@ public class GameManager : MonoBehaviour
         bool isAlRight = true;
         for (int i = 0; i < puzzlelist.Count; i++)
         {
-            isAlRight &= ( puzzlelist[i].transform.position == puzzlePositions[i]);
+            if (countryDependancy.Contains(foldername) )
+            {
+                if (((i == 4 || i == 5 || i == 9 || i == 8)))
+                isAlRight &= (puzzlelist[i].transform.position == puzzlePositions[i]);
+            }
+            else
+            {
+                isAlRight &= (puzzlelist[i].transform.position == puzzlePositions[i]);
+            }
         }
-
         
         if (isAlRight)
         {
@@ -179,7 +188,6 @@ public class GameManager : MonoBehaviour
         }
 
     }
-
 
     public void Win()
     {
