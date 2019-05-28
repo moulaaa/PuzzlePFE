@@ -926,12 +926,15 @@ MonoBehaviour:
   losePanel: {fileID: 1174959299}
   GiveUpButton: {fileID: 1619407777}
   DeveloperMode: 1
+  depandacyCountry:
+  - tunisia
+  - turkia
   puzzlePos: {fileID: 964637454}
   wordGuessingScript: {fileID: 932276028}
   winAnim: {fileID: 1648121883}
   progressBar: {fileID: 1979835401}
   finalScoreTxt: {fileID: 845915953}
-  timerValue: 60
+  timerValue: 600
   fullpicture: {fileID: 967871551}
 --- !u!20 &519420031
 Camera:

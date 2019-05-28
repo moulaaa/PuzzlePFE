@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     private List<puzzle> puzzlelist = new List<puzzle>();
     private List<int> randomNumbers = new List<int>();
     private List<Vector3> puzzlePositions = new List<Vector3>();
+    public List<string> depandacyCountry = new List<string>();
     public Transform puzzlePos;
 
     public WordGuessingGameManager wordGuessingScript;
@@ -166,7 +167,13 @@ public class GameManager : MonoBehaviour
         bool isAlRight = true;
         for (int i = 0; i < puzzlelist.Count; i++)
         {
-            isAlRight &= ( puzzlelist[i].transform.position == puzzlePositions[i]);
+            if (depandacyCountry.Contains(foldername))
+            {
+                if (countryException(foldername, i))
+                    isAlRight &= (puzzlelist[i].transform.position == puzzlePositions[i]);
+            }
+            else
+                isAlRight &= ( puzzlelist[i].transform.position == puzzlePositions[i]);
         }
 
         
@@ -180,10 +187,19 @@ public class GameManager : MonoBehaviour
 
     }
 
+    bool countryException(string folderName, int index)
+    {
+        switch (folderName)
+        {
+            case "tunisia": return (index == 4 || index == 5 || index == 8 || index == 9);
+            case "turkia": return (index == 3 || index == 4 || index == 5 || index == 7 || index == 8 || index == 9);
+            default: return false;
+        }
+    }
 
     public void Win()
     {
-        totalScoreValue += (int)realTimeValue * 10 + 100;
+        totalScoreValue += (int)realTimeValue+ 100;
         PlayerPrefs.SetInt("score", totalScoreValue);
 
         winAnim.Play("YouWinAnimation");
@@ -197,7 +213,7 @@ public class GameManager : MonoBehaviour
 
         while (s < totalScoreValue)
         {
-            s += Time.deltaTime * realTimeValue;
+            s += Time.deltaTime * totalScoreValue;
             finalScoreTxt.text = ((int)s).ToString();
             yield return new WaitForEndOfFrame();
         }
@@ -230,36 +246,6 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-     /*   IEnumerator SwapPuzzle(float delay)
-        {
-            yield return StartCoroutine(Wait(delay));
-            foreach (puzzle p in puzzlelist)
-            {
-                if (p.GetComponent<Renderer>().name == element2_name)
-                {
-                    StartCoroutine(MoveSwapPuzzle(pos2 ,p));
-                p.GetComponent<Renderer>().material.color = Color.white;
-
-            
-                }
-            if (p.GetComponent<Renderer>().name == element1_name)
-            {
-                StartCoroutine(MoveSwapPuzzle(pos1, p));
-                p.GetComponent<Renderer>().material.color = Color.white;
-
-
-            }
-        }
-        game_Status.Status = GameStatus.GameStat.play;
-            //MovePuzzle();
-        }
-    IEnumerator Wait(float duration)
-    {
-        for (float timer = 0; timer < duration; timer += Time.deltaTime)
-        {
-            yield return 0;
-        }
-    }*/
     IEnumerator MoveSwapPuzzle(Vector3 traget, puzzle p)
     {
         float accuracy = 0.00001f;
