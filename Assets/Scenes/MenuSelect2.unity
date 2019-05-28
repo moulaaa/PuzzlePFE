@@ -238,7 +238,7 @@ PrefabInstance:
     - target: {fileID: 7194656867178788731, guid: 385dba78ec1a768429eaf17c660eee84,
         type: 3}
       propertyPath: levelToUnlock
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 385dba78ec1a768429eaf17c660eee84, type: 3}
@@ -1689,7 +1689,7 @@ PrefabInstance:
     - target: {fileID: 7194656867178788731, guid: 385dba78ec1a768429eaf17c660eee84,
         type: 3}
       propertyPath: levelToUnlock
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 385dba78ec1a768429eaf17c660eee84, type: 3}
@@ -1825,7 +1825,7 @@ PrefabInstance:
     - target: {fileID: 7194656867178788731, guid: 385dba78ec1a768429eaf17c660eee84,
         type: 3}
       propertyPath: levelToUnlock
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 385dba78ec1a768429eaf17c660eee84, type: 3}

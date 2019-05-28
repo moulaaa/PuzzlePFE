@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     private List<puzzle> puzzlelist = new List<puzzle>();
     private List<int> randomNumbers = new List<int>();
     private List<Vector3> puzzlePositions = new List<Vector3>();
+    public List<string> depandacyCountry = new List<string>();
     public Transform puzzlePos;
 
     public WordGuessingGameManager wordGuessingScript;
@@ -166,6 +167,12 @@ public class GameManager : MonoBehaviour
         bool isAlRight = true;
         for (int i = 0; i < puzzlelist.Count; i++)
         {
+            if (depandacyCountry.Contains(foldername))
+            {
+                if (countryException(foldername, i))
+                    isAlRight &= (puzzlelist[i].transform.position == puzzlePositions[i]);
+            }
+            else
             isAlRight &= ( puzzlelist[i].transform.position == puzzlePositions[i]);
         }
 
@@ -180,6 +187,14 @@ public class GameManager : MonoBehaviour
 
     }
 
+    bool countryException(string folderName,int index)
+    {
+        switch (folderName)
+        {
+            case "tunisia": return (index == 4 || index == 5 || index == 8 || index == 9);
+            default: return false;
+        }
+    }
 
     public void Win()
     {

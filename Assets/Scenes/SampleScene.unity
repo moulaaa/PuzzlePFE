@@ -926,6 +926,8 @@ MonoBehaviour:
   losePanel: {fileID: 1174959299}
   GiveUpButton: {fileID: 1619407777}
   DeveloperMode: 1
+  depandacyCountry:
+  - tunisia
   puzzlePos: {fileID: 964637454}
   wordGuessingScript: {fileID: 932276028}
   winAnim: {fileID: 1648121883}
