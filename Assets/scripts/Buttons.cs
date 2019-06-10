@@ -45,6 +45,11 @@ public class Buttons : MonoBehaviour
             finalPosition = new Vector3(finalXPosition, transform.position.y, transform.position.z);
             StartCoroutine(MoveToPosition(finalPosition));
         }
+        else
+        {
+            SceneManager.LoadScene(sceneName);
+
+        }
         /*if (type==ButtonType.InGameButtonLoadScene)
         {
             GameManager.game_Status.Status = GameStatus.GameStat.Start;

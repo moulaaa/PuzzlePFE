@@ -9,9 +9,9 @@ public class GameManager : MonoBehaviour
     public puzzle puzzleprefab;
     public GameObject InGameMenu;
     public GameObject StartButton;
-    public GameObject WinGameMenu;
     public GameObject SwapButton;
     public GameObject losePanel;
+    public GameObject giveUpConfrimationPanel;
     public Buttons GiveUpButton;
     public bool DeveloperMode;
     private List<puzzle> puzzlelist = new List<puzzle>();
@@ -37,7 +37,6 @@ public class GameManager : MonoBehaviour
     public static int level;
     public GameObject fullpicture;
 
-
     [HideInInspector]
     public static GameStatus game_Status = new GameStatus();
     [HideInInspector]
@@ -51,20 +50,18 @@ public class GameManager : MonoBehaviour
     public static GameObject element1, element2;
     public static RemplaceElement replace_element;
     bool isGenerated = false;
-    bool isWin = false,canCheckWinningState = false;
+    bool isWin = false, canCheckWinningState = false;
     public static bool canStartTimer = false;
 
-    float realTimeValue ;
+    float realTimeValue;
     int totalScoreValue = 0;
 
-    const int minScoreToEnableSwapBtn = 0;
     const int minScoreToEnableGiveUpBtn = 0;
 
     void Start()
     {
         realTimeValue = timerValue;
-        totalScoreValue = PlayerPrefs.GetInt("score",0);
-        if (totalScoreValue <= minScoreToEnableSwapBtn) SwapButton.SetActive(false);
+        totalScoreValue = PlayerPrefs.GetInt("score", 0);
         if (totalScoreValue <= minScoreToEnableGiveUpBtn) GiveUpButton.gameObject.SetActive(false);
         SwapButton.SetActive(true);
         replace_element = RemplaceElement.first;
@@ -116,7 +113,7 @@ public class GameManager : MonoBehaviour
                 break;
             case GameStatus.GameStat.resume:
                 {
-                    InGameMenu.SetActive (false);
+                    InGameMenu.SetActive(false);
                     game_Status.Status = GameStatus.GameStat.play;
                 }
                 break;
@@ -136,9 +133,8 @@ public class GameManager : MonoBehaviour
                     Debug.Log("Element2 pos" + element2);
                     if (element1 != null && element2 != null)
                     {
-                       // StartCoroutine(SwapPuzzle(1.0f));
+                        // StartCoroutine(SwapPuzzle(1.0f));
                         SwapPuzzle();
-                        totalScoreValue -= minScoreToEnableSwapBtn;
                         SwapButton.SetActive(false);
                     }
                 }
@@ -149,13 +145,8 @@ public class GameManager : MonoBehaviour
 
         if (GiveUpButton.clicked)
         {
-            Debug.Log("hey");
-            GiveUpButton.clicked = false;
-            totalScoreValue -= minScoreToEnableGiveUpBtn;
-            for (int i = 0; i < puzzlelist.Count; i++)
-            {
-                puzzlelist[i].transform.position = puzzlePositions[i];
-            }
+            giveUpConfrimationPanel.SetActive(true);
+
         }
 
         if (!isWin && canCheckWinningState) CheckIfIWin();
@@ -164,7 +155,7 @@ public class GameManager : MonoBehaviour
 
     void CheckIfIWin()
     {
-        
+
         bool isAlRight = true;
         for (int i = 0; i < puzzlelist.Count; i++)
         {
@@ -174,10 +165,10 @@ public class GameManager : MonoBehaviour
                     isAlRight &= (puzzlelist[i].transform.position == puzzlePositions[i]);
             }
             else
-                isAlRight &= ( puzzlelist[i].transform.position == puzzlePositions[i]);
+                isAlRight &= (puzzlelist[i].transform.position == puzzlePositions[i]);
         }
 
-        
+
         if (isAlRight)
         {
             //WINNING STATE
@@ -198,9 +189,25 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void YesConfirmationBtn()
+    {
+        GiveUpButton.clicked = false;
+        totalScoreValue -= minScoreToEnableGiveUpBtn;
+        for (int i = 0; i < puzzlelist.Count; i++)
+        {
+            puzzlelist[i].transform.position = puzzlePositions[i];
+        }
+    }
+
+    public void NoConfirmationBtn()
+    {
+        GiveUpButton.clicked = false;
+        giveUpConfrimationPanel.SetActive(false);
+    }
+
     public void Win()
     {
-        totalScoreValue += (int)realTimeValue+ 100;
+        totalScoreValue += (int)realTimeValue + 100;
         PlayerPrefs.SetInt("score", totalScoreValue);
 
         winAnim.Play("YouWinAnimation");
@@ -257,142 +264,125 @@ public class GameManager : MonoBehaviour
         }
     }
     private void Spawnpuzzle(int number)
-        {
+    {
         puzzle tempPuzzle;
-            for (int i = 0; i <= number; i++)
-            {
-            tempPuzzle= Instantiate(puzzleprefab, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity, puzzlePos) as puzzle;
+        for (int i = 0; i <= number; i++)
+        {
+            tempPuzzle = Instantiate(puzzleprefab, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity, puzzlePos) as puzzle;
             tempPuzzle.name = tempPuzzle.name + i;
             puzzlelist.Add(tempPuzzle);
-            } 
         }
-        
-        void Setstarposition()
-        {   //first line 
-            puzzlelist[0].transform.position = new Vector3(startPosition.x, startPosition.y, 0.0f);
-            puzzlelist[1].transform.position = new Vector3(startPosition.x + offset.x, startPosition.y, 0.0f);
-            puzzlelist[2].transform.position = new Vector3(startPosition.x + (2 * offset.x), startPosition.y, 0.0f);
-            //second line
-            puzzlelist[3].transform.position = new Vector3(startPosition.x, startPosition.y - offset.y, 0.0f);
-            puzzlelist[4].transform.position = new Vector3(startPosition.x + offset.x, startPosition.y - offset.y, 0.0f);
-            puzzlelist[5].transform.position = new Vector3(startPosition.x + (2 * offset.x), startPosition.y - offset.y, 0.0f);
-            puzzlelist[6].transform.position = new Vector3(startPosition.x + (3 * offset.x), startPosition.y - offset.y, 0.0f);
-            //third line 
-            puzzlelist[7].transform.position = new Vector3(startPosition.x, startPosition.y - (2 * offset.y), 0.0f);
-            puzzlelist[8].transform.position = new Vector3(startPosition.x + offset.x, startPosition.y - (2 * offset.y), 0.0f);
-            puzzlelist[9].transform.position = new Vector3(startPosition.x + (2 * offset.x), startPosition.y - (2 * offset.y), 0.0f);
-            puzzlelist[10].transform.position = new Vector3(startPosition.x + (3 * offset.x), startPosition.y - (2 * offset.y), 0.0f);
-            //fourd line 
-            puzzlelist[11].transform.position = new Vector3(startPosition.x, startPosition.y - (3 * offset.y), 0.0f);
-            puzzlelist[12].transform.position = new Vector3(startPosition.x + offset.x, startPosition.y - (3 * offset.y), 0.0f);
-            puzzlelist[13].transform.position = new Vector3(startPosition.x + (2 * offset.x), startPosition.y - (3 * offset.y), 0.0f);
-            puzzlelist[14].transform.position = new Vector3(startPosition.x + (3 * offset.x), startPosition.y - (3 * offset.y), 0.0f);
-        }
-        private void ApllyMatriel()
-        {
-            string filepath;
-            for (int i = 1; i <= puzzlelist.Count; i++)
-            { if (i < 3)
-                    filepath = "puzzles/" + foldername + "/cube" + (i + 1);
-                else
-                    filepath = "puzzles/" + foldername + "/cube" + i;
-                Texture2D mat = Resources.Load(filepath, typeof(Texture2D)) as Texture2D;
-                puzzlelist[i - 1].GetComponent<Renderer>().material.mainTexture = mat;
-            }
-            filepath = "puzzles/" + foldername + "/pic";
-            Texture2D mat1 = Resources.Load(filepath, typeof(Texture2D)) as Texture2D;
-            fullpicture.GetComponent<Renderer>().material.mainTexture = mat1;
-        }
-        void MixPuzzles()
-        {
-            int number;
+    }
 
-            foreach (puzzle p in puzzlelist)
-            {
-                puzzlePositions.Add(p.transform.position);
-            }
-            foreach (puzzle p in puzzlelist)
+    void Setstarposition()
+    {   //first line 
+        puzzlelist[0].transform.position = new Vector3(startPosition.x, startPosition.y, 0.0f);
+        puzzlelist[1].transform.position = new Vector3(startPosition.x + offset.x, startPosition.y, 0.0f);
+        puzzlelist[2].transform.position = new Vector3(startPosition.x + (2 * offset.x), startPosition.y, 0.0f);
+        //second line
+        puzzlelist[3].transform.position = new Vector3(startPosition.x, startPosition.y - offset.y, 0.0f);
+        puzzlelist[4].transform.position = new Vector3(startPosition.x + offset.x, startPosition.y - offset.y, 0.0f);
+        puzzlelist[5].transform.position = new Vector3(startPosition.x + (2 * offset.x), startPosition.y - offset.y, 0.0f);
+        puzzlelist[6].transform.position = new Vector3(startPosition.x + (3 * offset.x), startPosition.y - offset.y, 0.0f);
+        //third line 
+        puzzlelist[7].transform.position = new Vector3(startPosition.x, startPosition.y - (2 * offset.y), 0.0f);
+        puzzlelist[8].transform.position = new Vector3(startPosition.x + offset.x, startPosition.y - (2 * offset.y), 0.0f);
+        puzzlelist[9].transform.position = new Vector3(startPosition.x + (2 * offset.x), startPosition.y - (2 * offset.y), 0.0f);
+        puzzlelist[10].transform.position = new Vector3(startPosition.x + (3 * offset.x), startPosition.y - (2 * offset.y), 0.0f);
+        //fourd line 
+        puzzlelist[11].transform.position = new Vector3(startPosition.x, startPosition.y - (3 * offset.y), 0.0f);
+        puzzlelist[12].transform.position = new Vector3(startPosition.x + offset.x, startPosition.y - (3 * offset.y), 0.0f);
+        puzzlelist[13].transform.position = new Vector3(startPosition.x + (2 * offset.x), startPosition.y - (3 * offset.y), 0.0f);
+        puzzlelist[14].transform.position = new Vector3(startPosition.x + (3 * offset.x), startPosition.y - (3 * offset.y), 0.0f);
+    }
+    private void ApllyMatriel()
+    {
+        string filepath;
+        for (int i = 1; i <= puzzlelist.Count; i++)
+        {
+            if (i < 3)
+                filepath = "puzzles/" + foldername + "/cube" + (i + 1);
+            else
+                filepath = "puzzles/" + foldername + "/cube" + i;
+            Texture2D mat = Resources.Load(filepath, typeof(Texture2D)) as Texture2D;
+            puzzlelist[i - 1].GetComponent<Renderer>().material.mainTexture = mat;
+        }
+        filepath = "puzzles/" + foldername + "/pic";
+        Texture2D mat1 = Resources.Load(filepath, typeof(Texture2D)) as Texture2D;
+        fullpicture.GetComponent<Renderer>().material.mainTexture = mat1;
+    }
+    void MixPuzzles()
+    {
+        int number;
+
+        foreach (puzzle p in puzzlelist)
+        {
+            puzzlePositions.Add(p.transform.position);
+        }
+        foreach (puzzle p in puzzlelist)
+        {
+            number = Random.Range(0, puzzlelist.Count);
+            while (randomNumbers.Contains(number))
             {
                 number = Random.Range(0, puzzlelist.Count);
-                while (randomNumbers.Contains(number))
-                {
-                    number = Random.Range(0, puzzlelist.Count);
-                }
-
-                randomNumbers.Add(number);
-                p.transform.position = puzzlePositions[number];
             }
-        }
 
-        bool HasWeWon()
-        {
-            foreach (puzzle p in puzzlelist)
-                if (p.transform.position != p.winPosition)
-                {
-                    return false;
-                }
-            return true;
+            randomNumbers.Add(number);
+            p.transform.position = puzzlePositions[number];
         }
+    }
 
-        void SetPuzzleOneTheStartPosition(bool giveup)
-        {
-            StartCoroutine(MoveToPosition(0.2f, giveup));
-            GiveUpButton.clicked = false;
-            game_Status.Status = GameStatus.GameStat.Start;
-        }
-        IEnumerator MoveToPosition(float delayTime, bool giveup)
-        {
-            for (int i = 0; i < puzzlelist.Count; i++)
+    bool HasWeWon()
+    {
+        foreach (puzzle p in puzzlelist)
+            if (p.transform.position != p.winPosition)
             {
-                for (float timer = 0; timer < delayTime; timer += delayTime)
-                {
-                    puzzlelist[i].transform.localScale = new Vector3(puzzlelist[i].Scale_backup.x + puzzlelist[i].scale_x, puzzlelist[i].Scale_backup.y + puzzlelist[i].scale_y, puzzlelist[i].transform.localScale.z);
-                    yield return 0;
-                }
+                return false;
             }
-            // WinGameMenu.SetActive(true);
-            if (!giveup)
-            {
+        return true;
+    }
 
-            }
-        }
-
-        void ShowWordGuessingGame()
+    void SetPuzzleOneTheStartPosition(bool giveup)
+    {
+        StartCoroutine(MoveToPosition(0.2f, giveup));
+        GiveUpButton.clicked = false;
+        game_Status.Status = GameStatus.GameStat.Start;
+    }
+    IEnumerator MoveToPosition(float delayTime, bool giveup)
+    {
+        for (int i = 0; i < puzzlelist.Count; i++)
         {
-            wordGuessingScript.selectedWord = returnCountryNamePedningOnFolderName();
-            wordGuessingScript.gameObject.SetActive(true);
-
-        }
-
-        string returnCountryNamePedningOnFolderName()
-        {
-            switch (foldername)
+            for (float timer = 0; timer < delayTime; timer += delayTime)
             {
-                case "tunisia": return "تونس";
-                case "turkia": return "تركيا";
-                case "austalie": return "أستراليا";
-                case "angleterre": return "انقلترا";
-                default: return null;
+                puzzlelist[i].transform.localScale = new Vector3(puzzlelist[i].Scale_backup.x + puzzlelist[i].scale_x, puzzlelist[i].Scale_backup.y + puzzlelist[i].scale_y, puzzlelist[i].transform.localScale.z);
+                yield return 0;
             }
         }
+        // WinGameMenu.SetActive(true);
+        if (!giveup)
+        {
 
-    
+        }
+    }
+
+    void ShowWordGuessingGame()
+    {
+        wordGuessingScript.selectedWord = returnCountryNamePedningOnFolderName();
+        wordGuessingScript.gameObject.SetActive(true);
+
+    }
+
+    string returnCountryNamePedningOnFolderName()
+    {
+        switch (foldername)
+        {
+            case "tunisia": return "تونس";
+            case "turkia": return "تركيا";
+            case "austalie": return "أستراليا";
+            case "angleterre": return "انقلترا";
+            default: return null;
+        }
+    }
+
+
 }
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1020,7 +1020,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 031db01606989ae47982e3d7a03eec3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: MenuSelect
+  sceneName: Selection Scene
   finalXPosition: 2.33
   type: 2
   clicked: 0
@@ -1461,7 +1461,7 @@ Transform:
   m_GameObject: {fileID: 1841446950}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.4, y: 3.77, z: 9}
-  m_LocalScale: {x: 1.8110936, y: 1, z: 1}
+  m_LocalScale: {x: 6.1124406, y: 4.957, z: 1}
   m_Children: []
   m_Father: {fileID: 611058696}
   m_RootOrder: 0

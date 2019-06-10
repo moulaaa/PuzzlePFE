@@ -147,7 +147,7 @@ MonoBehaviour:
   finalXPosition: 0
   type: 0
   clicked: 0
-  EnableSlidingEffect: 1
+  EnableSlidingEffect: 0
 --- !u!65 &139520389
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -419,7 +419,7 @@ MonoBehaviour:
   finalXPosition: 0
   type: 0
   clicked: 0
-  EnableSlidingEffect: 1
+  EnableSlidingEffect: 0
 --- !u!65 &801117180
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -530,7 +530,7 @@ MonoBehaviour:
   finalXPosition: 0
   type: 0
   clicked: 0
-  EnableSlidingEffect: 1
+  EnableSlidingEffect: 0
 --- !u!65 &1103162951
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -641,7 +641,7 @@ MonoBehaviour:
   finalXPosition: 0
   type: 0
   clicked: 0
-  EnableSlidingEffect: 1
+  EnableSlidingEffect: 0
 --- !u!65 &1622598702
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -752,7 +752,7 @@ MonoBehaviour:
   finalXPosition: 0
   type: 0
   clicked: 0
-  EnableSlidingEffect: 1
+  EnableSlidingEffect: 0
 --- !u!65 &1773453371
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -863,7 +863,7 @@ MonoBehaviour:
   finalXPosition: 0
   type: 0
   clicked: 0
-  EnableSlidingEffect: 1
+  EnableSlidingEffect: 0
 --- !u!65 &1782327594
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -974,7 +974,7 @@ MonoBehaviour:
   finalXPosition: 0
   type: 0
   clicked: 0
-  EnableSlidingEffect: 1
+  EnableSlidingEffect: 0
 --- !u!65 &2056954352
 BoxCollider:
   m_ObjectHideFlags: 0
