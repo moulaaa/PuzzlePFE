@@ -192,6 +192,7 @@ public class GameManager : MonoBehaviour
     public void YesConfirmationBtn()
     {
         GiveUpButton.clicked = false;
+        giveUpConfrimationPanel.SetActive(false);
         totalScoreValue -= minScoreToEnableGiveUpBtn;
         for (int i = 0; i < puzzlelist.Count; i++)
         {
