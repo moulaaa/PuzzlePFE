@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
     public static int level;
     public GameObject fullpicture;
 
+
     [HideInInspector]
     public static GameStatus game_Status = new GameStatus();
     [HideInInspector]

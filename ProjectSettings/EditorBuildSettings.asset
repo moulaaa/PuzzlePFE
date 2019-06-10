@@ -20,4 +20,28 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MenuSelect.unity
     guid: 2228c2639634798449889ad3fc7dcf9f
+  - enabled: 1
+    path: Assets/Scenes/Selection Scene.unity
+    guid: a15391d72a9da70498903f33338eb7b2
+  - enabled: 1
+    path: Assets/Scenes/Afrique.unity
+    guid: eee6ac41c5c9e5d418e4306c6f227391
+  - enabled: 1
+    path: Assets/Scenes/Asie.unity
+    guid: 9b11db0a81e47d34893ab61faa493314
+  - enabled: 1
+    path: Assets/Scenes/Antertakia.unity
+    guid: f742ab9943d3d174ebf4dad39fb2f6ea
+  - enabled: 1
+    path: Assets/Scenes/Europe.unity
+    guid: f1dfb6780a2787b46b5dc521c527aed2
+  - enabled: 1
+    path: Assets/Scenes/Ostralie.unity
+    guid: 5c1572e190cec64408835b5ffed2a84e
+  - enabled: 1
+    path: Assets/Scenes/USA North.unity
+    guid: 07992b74a94eba1459600ecd272b5725
+  - enabled: 1
+    path: Assets/Scenes/USA Sud.unity
+    guid: ab88f286708dac14b9a6daca3e414d55
   m_configObjects: {}
