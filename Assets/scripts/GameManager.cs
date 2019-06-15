@@ -381,6 +381,7 @@ public class GameManager : MonoBehaviour
             case "turkia": return "تركيا";
             case "austalie": return "أستراليا";
             case "angleterre": return "انقلترا";
+            case "belgique": return "بلجيكيا";
             default: return null;
         }
     }
