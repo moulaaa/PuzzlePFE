@@ -172,6 +172,7 @@ public class GameManager : MonoBehaviour
         if (isAlRight)
         {
             //WINNING STATE
+            PlayerPrefs.SetInt(level.ToString(), 1);
             isWin = true;
             canStartTimer = false;
             ShowWordGuessingGame();
@@ -382,6 +383,7 @@ public class GameManager : MonoBehaviour
             case "austalie": return "أستراليا";
             case "angleterre": return "انقلترا";
             case "belgique": return "بلجيكيا";
+            case "argentine": return "أرجنتين";
             default: return null;
         }
     }

@@ -143,7 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 031db01606989ae47982e3d7a03eec3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: 
+  sceneName: Ostralie
   finalXPosition: 0
   type: 0
   clicked: 0
@@ -415,7 +415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 031db01606989ae47982e3d7a03eec3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: USA Sud
+  sceneName: Amerique Sud
   finalXPosition: 0
   type: 0
   clicked: 0
@@ -632,7 +632,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 031db01606989ae47982e3d7a03eec3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: 
+  sceneName: Europe
   finalXPosition: 0
   type: 0
   clicked: 0
@@ -987,7 +987,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 031db01606989ae47982e3d7a03eec3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: 
+  sceneName: Amerique Nord
   finalXPosition: 0
   type: 0
   clicked: 0
@@ -1209,7 +1209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 031db01606989ae47982e3d7a03eec3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: 
+  sceneName: Antarctique
   finalXPosition: 0
   type: 0
   clicked: 0

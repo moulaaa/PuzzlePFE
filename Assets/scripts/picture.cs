@@ -13,13 +13,14 @@ public class picture : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //PlayerPrefs.DeleteAll();
-        if (levelToUnlock <= PlayerPrefs.GetInt("saveData", 0))
+
+        for (int i = 0; i < 100; i++)
         {
-            LockBtn.gameObject.SetActive(false);
+            if (PlayerPrefs.HasKey(levelToUnlock.ToString()))
+            {
+                LockBtn.enabled = true;
+            }
         }
-        else
-            GetComponent<Button>().enabled = false;
     }
     public void LoadScene()
     {
