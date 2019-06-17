@@ -267,7 +267,7 @@ PrefabInstance:
     - target: {fileID: 7194656867178788720, guid: 385dba78ec1a768429eaf17c660eee84,
         type: 3}
       propertyPath: m_Name
-      value: tunisia
+      value: chine
       objectReference: {fileID: 0}
     - target: {fileID: 7194656867178788727, guid: 385dba78ec1a768429eaf17c660eee84,
         type: 3}
@@ -373,6 +373,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7194656867178788725, guid: 385dba78ec1a768429eaf17c660eee84,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f563af11c55fb7249a42fa5f80773fe0,
+        type: 3}
+    - target: {fileID: 7194656867178788731, guid: 385dba78ec1a768429eaf17c660eee84,
+        type: 3}
+      propertyPath: levelToUnlock
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 385dba78ec1a768429eaf17c660eee84, type: 3}
