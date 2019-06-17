@@ -300,14 +300,12 @@ public class GameManager : MonoBehaviour
     private void ApllyMatriel()
     {
         string filepath;
-        for (int i = 1; i <= puzzlelist.Count; i++)
+        for (int i = 0; i < puzzlelist.Count; i++)
         {
-            if (i < 3)
                 filepath = "puzzles/" + foldername + "/cube" + (i + 1);
-            else
-                filepath = "puzzles/" + foldername + "/cube" + i;
+
             Texture2D mat = Resources.Load(filepath, typeof(Texture2D)) as Texture2D;
-            puzzlelist[i - 1].GetComponent<Renderer>().material.mainTexture = mat;
+            puzzlelist[i].GetComponent<Renderer>().material.mainTexture = mat;
         }
         filepath = "puzzles/" + foldername + "/pic";
         Texture2D mat1 = Resources.Load(filepath, typeof(Texture2D)) as Texture2D;
