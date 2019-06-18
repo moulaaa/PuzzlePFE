@@ -311,6 +311,8 @@ public class GameManager : MonoBehaviour
         Texture2D mat1 = Resources.Load(filepath, typeof(Texture2D)) as Texture2D;
         fullpicture.GetComponent<Renderer>().material.mainTexture = mat1;
     }
+
+
     void MixPuzzles()
     {
         int number;
