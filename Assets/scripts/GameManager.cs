@@ -302,7 +302,7 @@ public class GameManager : MonoBehaviour
         string filepath;
         for (int i = 0; i < puzzlelist.Count; i++)
         {
-                filepath = "puzzles/" + foldername + "/cube" + (i + 1);
+                filepath = "puzzles/" + foldername + "/cube" + (i+1);
 
             Texture2D mat = Resources.Load(filepath, typeof(Texture2D)) as Texture2D;
             puzzlelist[i].GetComponent<Renderer>().material.mainTexture = mat;
