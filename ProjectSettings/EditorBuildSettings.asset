@@ -14,9 +14,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 435442e54ecbab64d820de6f160576bf
-  - enabled: 1
-    path: Assets/Scenes/MenuSelect2.unity
-    guid: 3bb3b88bb13c3f84299369aca9d52f46
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/MenuSelect.unity
     guid: 2228c2639634798449889ad3fc7dcf9f
@@ -29,18 +29,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Asie.unity
     guid: 9b11db0a81e47d34893ab61faa493314
-  - enabled: 1
-    path: Assets/Scenes/Antarctique.unity
-    guid: f742ab9943d3d174ebf4dad39fb2f6ea
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Europe.unity
     guid: f1dfb6780a2787b46b5dc521c527aed2
   - enabled: 1
     path: "Assets/Scenes/Oc\xE9anie.unity"
     guid: 5c1572e190cec64408835b5ffed2a84e
-  - enabled: 1
-    path: Assets/Scenes/Amerique Nord.unity
-    guid: 07992b74a94eba1459600ecd272b5725
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Amerique.unity
     guid: ab88f286708dac14b9a6daca3e414d55
