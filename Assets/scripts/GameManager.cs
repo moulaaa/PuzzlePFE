@@ -311,8 +311,6 @@ public class GameManager : MonoBehaviour
         Texture2D mat1 = Resources.Load(filepath, typeof(Texture2D)) as Texture2D;
         fullpicture.GetComponent<Renderer>().material.mainTexture = mat1;
     }
-
-
     void MixPuzzles()
     {
         int number;
@@ -385,8 +383,9 @@ public class GameManager : MonoBehaviour
             case "belgique": return "بلجيكيا";
             case "argentine": return "أرجنتين";
             case "italie": return "إيطاليا";
-            case "chine": return "صين"; 
+            case "chine": return "صين";
             case "bresil": return "برازيل";
+            case "algerie": return "الجزائر";
 
             default: return null;
         }
