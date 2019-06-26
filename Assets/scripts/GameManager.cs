@@ -159,19 +159,19 @@ public class GameManager : MonoBehaviour
         bool isAlRight = true;
         for (int i = 0; i < puzzlelist.Count; i++)
         {
-            for (int j = 0; j < puzzlelist.Count; j++)
-            {
+           
+            
                 if (depandacyCountry.Contains(foldername))
                 {
-                    if (countryException(foldername, i, j))
+                    if (countryException(foldername, i))
                         isAlRight &= (puzzlelist[i].transform.position == puzzlePositions[i]);
-                    isAlRight &= (puzzlelist[j].transform.position == puzzlePositions[j]);
+                  
 
                 }
                 else
                     isAlRight &= (puzzlelist[i].transform.position == puzzlePositions[i]);
-                isAlRight &= (puzzlelist[j].transform.position == puzzlePositions[j]);
-            }
+              
+           
         }
 
         if (isAlRight)
@@ -185,13 +185,12 @@ public class GameManager : MonoBehaviour
 
     }
 
-    bool countryException(string folderName, int index, int index2)
+    bool countryException(string folderName, int index)
     {
         switch (folderName)
         {
             case "tunisia": return (index == 4 || index == 5 || index == 8 || index == 9);
             case "turkia": return (index == 3 || index == 4 || index == 5 || index == 7 || index == 8 || index == 9);
-            case "algerie": return (index == 1 || index == 2 || index == 4 || index == 8 || index == 12 || index == 13) && (index2 == 3 || index2 == 7 || index2 == 11 || index2 == 14 || index2 == 15);
             default: return false;
         }
     }

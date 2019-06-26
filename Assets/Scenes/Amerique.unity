@@ -238,7 +238,7 @@ PrefabInstance:
     - target: {fileID: 7194656867178788731, guid: 385dba78ec1a768429eaf17c660eee84,
         type: 3}
       propertyPath: levelToUnlock
-      value: 8
+      value: 17
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 385dba78ec1a768429eaf17c660eee84, type: 3}
@@ -543,7 +543,7 @@ PrefabInstance:
     - target: {fileID: 7194656867178788731, guid: 385dba78ec1a768429eaf17c660eee84,
         type: 3}
       propertyPath: levelToUnlock
-      value: 8
+      value: 19
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 385dba78ec1a768429eaf17c660eee84, type: 3}
@@ -766,7 +766,7 @@ PrefabInstance:
     - target: {fileID: 7194656867178788731, guid: 385dba78ec1a768429eaf17c660eee84,
         type: 3}
       propertyPath: levelToUnlock
-      value: 8
+      value: 22
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 385dba78ec1a768429eaf17c660eee84, type: 3}
@@ -1005,7 +1005,7 @@ PrefabInstance:
     - target: {fileID: 7194656867178788731, guid: 385dba78ec1a768429eaf17c660eee84,
         type: 3}
       propertyPath: levelToUnlock
-      value: 8
+      value: 16
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 385dba78ec1a768429eaf17c660eee84, type: 3}
@@ -1290,7 +1290,7 @@ PrefabInstance:
     - target: {fileID: 7194656867178788731, guid: 385dba78ec1a768429eaf17c660eee84,
         type: 3}
       propertyPath: levelToUnlock
-      value: 8
+      value: 18
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 385dba78ec1a768429eaf17c660eee84, type: 3}
@@ -1559,7 +1559,7 @@ PrefabInstance:
     - target: {fileID: 7194656867178788731, guid: 385dba78ec1a768429eaf17c660eee84,
         type: 3}
       propertyPath: levelToUnlock
-      value: 8
+      value: 21
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 385dba78ec1a768429eaf17c660eee84, type: 3}
@@ -1710,7 +1710,7 @@ PrefabInstance:
     - target: {fileID: 7194656867178788731, guid: 385dba78ec1a768429eaf17c660eee84,
         type: 3}
       propertyPath: levelToUnlock
-      value: 8
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 385dba78ec1a768429eaf17c660eee84, type: 3}
