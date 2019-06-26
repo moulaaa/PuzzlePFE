@@ -80,8 +80,10 @@ public class Buttons : MonoBehaviour
         { Application.Quit(); }
         if (gameObject.name == "Start")
         {
-            Destroy(this.transform.parent.gameObject);
             GameManager.game_Status.Status = GameStatus.GameStat.Start_pressed;
+            MainMenuHandler.canPlay = true;
+            Destroy(this.transform.parent.gameObject);
+            
         }
         if (gameObject.name == "Menu")
         {

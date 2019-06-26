@@ -1,12 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HelpManager : MonoBehaviour
 {
     public Animator myAnim;
 
+    public AudioClip[] myAudios;
+
+    AudioSource audioSource;
+
+
+
     short indicator = -1;
+
+    void Start()
+    {
+        audioSource = Camera.main.GetComponent<AudioSource>();
+    }
+
+    
+
     public void Surface()
     {
         indicator = 0;
@@ -16,6 +31,7 @@ public class HelpManager : MonoBehaviour
     public void Speak()
     {
         indicator = 1;
+        if (MainMenuHandler.soundEnabled) audioSource.PlayOneShot(myAudios[GameManager.level]);
         myAnim.Play("Speak");
     }
 

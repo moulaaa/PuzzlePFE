@@ -13,33 +13,36 @@ public class MainMenuHandler : MonoBehaviour
     public Sprite soundOnSprite, soundOffSprite;
     public Sprite musicOnSprite, musicOffSprite;
 
+    public static bool canPlay = false;
+
+    AudioSource audioSource;
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+        canPlay = false;
       if (finalScoreTxt != null)  finalScoreTxt.text = PlayerPrefs.GetInt("score", 0).ToString();
-        soundEnabled = PlayerPrefs.GetInt("sound", 0) == 0;
-        soundEnabled = PlayerPrefs.GetInt("music", 0) == 0;
+        soundEnabled = PlayerPrefs.GetInt("sound", 0) == 1;
+        musicEnabled = PlayerPrefs.GetInt("music", 0) == 1;
 
-        if (soundEnabled)
+        if (soundEnabled) soundBtnImg.sprite = soundOnSprite; else soundBtnImg.sprite = soundOffSprite;
+        if (musicEnabled) musicBtnImg.sprite = musicOnSprite; else musicBtnImg.sprite = musicOffSprite;
+
+        if (musicEnabled && !(SceneManager.GetActiveScene().name == "SampleScene"))
         {
-            soundEnabled = false;
-            soundBtnImg.sprite = soundOffSprite;
+            audioSource.enabled = true;
         }
         else
         {
-            soundEnabled = true;
-            soundBtnImg.sprite = soundOnSprite;
+            audioSource.enabled = false;
         }
-        if (musicEnabled)
-        {
-            musicEnabled = false;
-            musicBtnImg.sprite = musicOffSprite;
-        }
-        else
-        {
-            musicEnabled = true;
-            musicBtnImg.sprite = musicOnSprite;
-        }
+
+    }
+
+    private void Update()
+    { 
+            if ((SceneManager.GetActiveScene().name == "MainMenu" ||canPlay) && musicEnabled) audioSource.enabled = true;
+            else audioSource.enabled = false;
 
     }
 
@@ -73,12 +76,14 @@ public class MainMenuHandler : MonoBehaviour
         if (musicEnabled)
         {
             musicEnabled = false;
+            audioSource.enabled = false;
             musicBtnImg.sprite = musicOffSprite;
             PlayerPrefs.SetInt("music", 0);
         }
         else
         {
             musicEnabled = true;
+            audioSource.enabled = true;
             musicBtnImg.sprite = musicOnSprite;
             PlayerPrefs.SetInt("music", 1);
         }
