@@ -71,6 +71,9 @@ public class GameManager : MonoBehaviour
         ApllyMatriel();
     }
 
+
+
+
     // Update is called once per frame
     void Update()
     {
